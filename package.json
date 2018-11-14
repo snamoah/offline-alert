@@ -24,6 +24,11 @@
   "homepage": "https://github.com/snamoah/offline-alert#readme",
   "dependencies": {
     "beepbeep": "^1.2.2",
+    "commander": "^2.19.0",
+    "daemon-pid": "^1.0.0-b.3",
     "ping": "^0.2.2"
+  },
+  "bin": {
+    "offlinealert": "index.js"
   }
 }
