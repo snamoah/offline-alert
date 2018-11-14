@@ -1,0 +1,25 @@
+{
+  "name": "offline-alert",
+  "version": "1.0.0",
+  "description": "Beep whenever you notice I'm offline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snamoah/offline-alert.git"
+  },
+  "keywords": [
+    "cli",
+    "offline-alert",
+    "ping",
+    "daemon"
+  ],
+  "author": "Samuel Amoah <sa.am@programmer.net>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snamoah/offline-alert/issues"
+  },
+  "homepage": "https://github.com/snamoah/offline-alert#readme"
+}
