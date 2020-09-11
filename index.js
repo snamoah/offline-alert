@@ -25,6 +25,8 @@ program
             detached: true,
             stdio: 'inherit'
           })
+          
+          console.log('Offline Alert started');
 
           child.unref()
         }))

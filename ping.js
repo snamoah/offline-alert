@@ -1,18 +1,32 @@
 'use strict'
 
 const ping = require('ping')
-const beep = require('beepbeep')
+const notifier = require('node-notifier');
 const { getPidFilePath, handlePidProcess } = require('./utils')
 const pid = require('daemon-pid')(getPidFilePath())
 
 const DEFAULT_HOST = 'google.com'
+const PING_INTERVAL = 2000;
+const DELAY = 1000 * 60;
 
-const last = 200
-const baseline = [ 200, 200, 200 ]
-const interlude = [ 50, 50, 50, 50 ]
+let interval;
 
-const offlineBeep = _ =>
-  beep([...baseline, ...interlude, last])
+const offlineBeep = _ => {
+  notifier.notify({
+    title: 'Offline Alert',
+    message: 'Your computer is offline',
+    sound: true,
+    wait: true,
+  });
+
+  notifier.on('click', () => {
+    clearInterval(interval); 
+
+    setTimeout(() => {
+      interval = setInterval(checkConnection, PING_INTERVAL)
+    }, DELAY);
+  })
+}
 
 
 const checkConnection = _ =>
@@ -21,7 +35,7 @@ const checkConnection = _ =>
   })
 
 pid.write(handlePidProcess(_ => {
-  const interval = setInterval(checkConnection, 2000)
+  interval = setInterval(checkConnection, PING_INTERVAL)
 
   process.on('SIGTERM', _ => {
     clearInterval(interval)
